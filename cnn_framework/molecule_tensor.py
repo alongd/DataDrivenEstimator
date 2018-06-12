@@ -175,7 +175,8 @@ def get_bond_attributes(molecule,
         for bonded_atom, bond in atom.bonds.iteritems():
             if not bonded_atom.isHydrogen() and (bond not in bond_attributes_dict):
 
-                attributes = [1]
+            #    attributes = [1]
+                attributes = []
                 if differentiate_bond_type:
                     attributes.extend(one_hot_vector(bond.getOrderStr(),
                                                      ['S', 'B', 'D', 'T']))
