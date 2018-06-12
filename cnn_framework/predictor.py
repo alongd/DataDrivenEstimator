@@ -14,6 +14,8 @@ from cnn_framework.data import (prepare_data_one_fold, prepare_folded_data_from_
 import logging
 from keras.callbacks import EarlyStopping
 import json
+from .layers import MoleculeConv
+from .uncertainty import RandomMask, EnsembleModel
 
 
 class Predictor(object):
@@ -344,6 +346,13 @@ class Predictor(object):
         if self.save_tensors_dir is not None:
             if not self.keep_tensors:
                 shutil.rmtree(self.save_tensors_dir)
+    
+    def load_architecture(self, param_path=None):
+        from keras.models import model_from_json
+        f = open(param_path,'r').read()
+        self.model = model_from_json(json.loads(f), 
+            custom_objects={"EnsembleModel":EnsembleModel,
+            "RandomMask":RandomMask, "MoleculeConv":MoleculeConv})
 
     def load_parameters(self, param_path=None):
         self.model.load_weights(param_path)
