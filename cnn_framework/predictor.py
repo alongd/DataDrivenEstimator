@@ -365,18 +365,21 @@ class Predictor(object):
 
     def predict(self, molecule, sigma=False):
         molecule_tensor = get_molecule_tensor(molecule,
-                                              self.add_extra_atom_attribute,
-                                              self.add_extra_bond_attribute,
+                                              self.add_extra_atom_attribute, 
+                                              self.add_extra_bond_attribute, 
                                               self.differentiate_atom_type,
                                               self.differentiate_bond_type)
+        
         if self.padding:
             molecule_tensor = pad_molecule_tensor(molecule_tensor, self.padding_final_size)
         molecule_tensor_array = np.array([molecule_tensor])
+
         if sigma:
+            Y_avg, Y_std = self.model.predict(molecule_tensor_array, sigma=sigma)
             if self.prediction_task == "Cp(cal/mol/K)":
-                return self.model.predict(molecule_tensor_array, sigma=sigma)[0]
+                return Y_avg[0], Y_std[0]
             else:
-                return self.model.predict(molecule_tensor_array, sigma=sigma)[0][0]
+                return Y_avg[0][0], Y_std[0][0]
         else:
             if self.prediction_task == "Cp(cal/mol/K)":
                 return self.model.predict(molecule_tensor_array)[0]
