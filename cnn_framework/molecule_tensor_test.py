@@ -229,9 +229,9 @@ class TestMoleculeTensor(unittest.TestCase):
         bond_attributes_dict = get_bond_attributes(mol_test, non_H_atoms)
 
         self.assertEqual(len(bond_attributes_dict), 1)
-
-        expected_attributes = [1,
-                               1, 0, 0, 0,
+        
+#        expected_attributes = [1,
+        expected_attributes = [1, 0, 0, 0,
                                0,
                                0,
                                0,
@@ -265,8 +265,8 @@ class TestMoleculeTensor(unittest.TestCase):
 
         self.assertEqual(len(bond_attributes_dict), 6)
 
-        expected_attributes = [1,
-                               0, 1, 0, 0,
+#        expected_attributes = [1,
+        expected_attributes = [0, 1, 0, 0,
                                1,
                                1,
                                1,

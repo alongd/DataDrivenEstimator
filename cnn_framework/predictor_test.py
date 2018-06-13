@@ -48,14 +48,18 @@ class TestPredictor(unittest.TestCase):
         dense2 = self.predictor.model.layers[3]
 
         self.assertEqual(gfp.W_inner.shape.eval()[0], 4)
-        self.assertEqual(gfp.W_inner.shape.eval()[1], 38)
-        self.assertEqual(gfp.W_inner.shape.eval()[2], 38)
+        #self.assertEqual(gfp.W_inner.shape.eval()[1], 38)
+        #self.assertEqual(gfp.W_inner.shape.eval()[2], 38)
+        self.assertEqual(gfp.W_inner.shape.eval()[1], 37)
+        self.assertEqual(gfp.W_inner.shape.eval()[2], 37)
         self.assertEqual(gfp.b_inner.shape.eval()[0], 4)
         self.assertEqual(gfp.b_inner.shape.eval()[1], 1)
-        self.assertEqual(gfp.b_inner.shape.eval()[2], 38)
+        #self.assertEqual(gfp.b_inner.shape.eval()[2], 38)
+        self.assertEqual(gfp.b_inner.shape.eval()[2], 37)
 
         self.assertEqual(gfp.W_output.shape.eval()[0], 4)
-        self.assertEqual(gfp.W_output.shape.eval()[1], 38)
+        #self.assertEqual(gfp.W_output.shape.eval()[1], 38)
+        self.assertEqual(gfp.W_output.shape.eval()[1], 37)
         self.assertEqual(gfp.W_output.shape.eval()[2], 512)
         self.assertEqual(gfp.b_output.shape.eval()[0], 4)
         self.assertEqual(gfp.b_output.shape.eval()[1], 1)

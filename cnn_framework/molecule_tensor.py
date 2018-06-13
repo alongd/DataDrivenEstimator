@@ -175,7 +175,7 @@ def get_bond_attributes(molecule,
         for bonded_atom, bond in atom.bonds.iteritems():
             if not bonded_atom.isHydrogen() and (bond not in bond_attributes_dict):
 
-            #    attributes = [1]
+#                attributes = [1]
                 attributes = []
                 if differentiate_bond_type:
                     attributes.extend(one_hot_vector(bond.getOrderStr(),
@@ -201,9 +201,11 @@ def get_bond_attributes(molecule,
 
     if not bond_attributes_dict:
         if differentiate_bond_type:
-            bond_attributes_dict['no_bond'] = np.array([0]*15, dtype=np.float32)
+            bond_attributes_dict['no_bond'] = np.array([0]*14, dtype=np.float32)
+#            bond_attributes_dict['no_bond'] = np.array([0]*15, dtype=np.float32)
         else:
-            bond_attributes_dict['no_bond'] = np.array([0]*9, dtype=np.float32)
+            bond_attributes_dict['no_bond'] = np.array([0]*8, dtype=np.float32)
+#            bond_attributes_dict['no_bond'] = np.array([0]*9, dtype=np.float32)
 
     return bond_attributes_dict
 
