@@ -107,14 +107,14 @@ class TestPredictor(unittest.TestCase):
 
         self.assertAlmostEqual(gfp.W_inner.eval()[0][0][0], 1.000, 3)
         self.assertAlmostEqual(gfp.b_inner.eval()[0][0][0], 0.000, 3)
-        self.assertAlmostEqual(gfp.W_output.eval()[0][0][0], 0.040, 3)
-        self.assertAlmostEqual(gfp.b_output.eval()[0][0][0], -0.561, 3)
+        self.assertAlmostEqual(gfp.W_output.eval()[0][0][0], 0.003, 3)
+        self.assertAlmostEqual(gfp.b_output.eval()[0][0][0], -0.843, 3)
 
-        self.assertAlmostEqual(dense1.W.eval()[0][0], -0.023, 3)
-        self.assertAlmostEqual(dense1.b.eval()[0], 1.517, 3)
+        self.assertAlmostEqual(dense1.W.eval()[0][0], 0.983, 3)
+        self.assertAlmostEqual(dense1.b.eval()[0], 2.310, 3)
 
-        self.assertAlmostEqual(dense2.W.eval()[0][0], -4.157, 3)
-        self.assertAlmostEqual(dense2.b.eval()[0], 1.515, 3)
+        self.assertAlmostEqual(dense2.W.eval()[0][0], 4.288, 3)
+        self.assertAlmostEqual(dense2.b.eval()[0], -1.321, 3)
 
     def test_predict(self):
         """
@@ -152,7 +152,7 @@ class TestPredictor(unittest.TestCase):
 
         h298_predicted = self.predictor.predict(mol_test)
 
-        self.assertAlmostEqual(h298_predicted, 19.5, 0)
+        self.assertAlmostEqual(h298_predicted, 20.2, 0)
 
     def test_kfcv_train(self):
         test_predictor_input = os.path.join(os.path.dirname(cnn_framework.__file__),
